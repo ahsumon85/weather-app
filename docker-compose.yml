@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  weather-app:
+    image: habibsumoncse/weather-app:0.2
+    container_name: weather-app
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DB_HOST=mysqldb
+      - MYSQL_DATABASE=weather
+      - DB_USERNAME=root
+      - DB_PASSWORD=admin
+    depends_on:
+      - mysqldb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1G
+
+
+  mysqldb:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      - MYSQL_DATABASE=weather
+      - MYSQL_ROOT_PASSWORD=admin
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 2G
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysqldb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512m
+
+
+
