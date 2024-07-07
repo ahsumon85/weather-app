@@ -33,7 +33,9 @@ All the other specific requirements are up to you
 To run the Dockerized version of the project, run
 
 ```
-docker-compose up
+$ git clone https://github.com/ahsumon85/weather-app.git
+$ cd weather-app
+$ docker-compose up
 ```
 
 Build and Run the application Application will run on browser at [http://localhost:8080](http://localhost:8080/)
